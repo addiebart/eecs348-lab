@@ -7,28 +7,31 @@
     <title>Practice 2</title>
 
     <style>
-        p {
+        #outer {
             font-family: serif;
             width: 400px;
             max-width: 90%;
-            border: 4px solid;
+            border: 4px solid ;
         }
+
     </style>
 
     <script>
         addEventListener("DOMContentLoaded", () => {
             document.querySelector("#btn").addEventListener("click", () => {
-                document.querySelector("p").style.color = `rgb(${document.querySelector("#textr").value}, ${document.querySelector("#textg").value}, ${document.querySelector("#textb").value})`;
-                document.querySelector("p").style.borderBlockColor = `rgb(${document.querySelector("#borderr").value}, ${document.querySelector("#borderg").value}, ${document.querySelector("#borderb").value})`;
+                document.querySelector("#inner").style.color = `rgb(${document.querySelector("#textr").value}, ${document.querySelector("#textg").value}, ${document.querySelector("#textb").value})`;
+                document.querySelector("#outer").style.border = `4px solid rgb(${document.querySelector("#borderr").value}, ${document.querySelector("#borderg").value}, ${document.querySelector("#borderb").value})`;
             });
         });
     </script>
 
 </head>
 <body>
-    <p>
-        The 1912 United States presidential election was the 32nd quadrennial presidential election, held on Tuesday, November 5, 1912. Democratic governor Woodrow Wilson of New Jersey unseated incumbent Republican president William Howard Taft while defeating former president Theodore Roosevelt (who ran under the banner of the new Progressive/"Bull Moose" Party) and Socialist Party nominee Eugene V. Debs.
-    </p><br><br>
+    <div id="outer">
+        <p id="inner">
+            The 1912 United States presidential election was the 32nd quadrennial presidential election, held on Tuesday, November 5, 1912. Democratic governor Woodrow Wilson of New Jersey unseated incumbent Republican president William Howard Taft while defeating former president Theodore Roosevelt (who ran under the banner of the new Progressive/"Bull Moose" Party) and Socialist Party nominee Eugene V. Debs.
+        </p>
+    </div><br><br>
     <div>Text</div>
     Red<input type="text" id="textr"><br>
     Green<input type="text" id="textg"><br>
