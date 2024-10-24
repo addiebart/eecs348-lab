@@ -4,3 +4,7 @@
     max-width: 90%;
     border: 4px solid ;
 }
+
+.italics {
+    font-style: italic;
+}
