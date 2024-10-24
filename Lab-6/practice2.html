@@ -5,26 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow, noarchive">
     <title>Practice 2</title>
-
-    <style>
-        #outer {
-            font-family: serif;
-            width: 400px;
-            max-width: 90%;
-            border: 4px solid ;
-        }
-
-    </style>
-
-    <script>
-        addEventListener("DOMContentLoaded", () => {
-            document.querySelector("#btn").addEventListener("click", () => {
-                document.querySelector("#inner").style.color = `rgb(${document.querySelector("#textr").value}, ${document.querySelector("#textg").value}, ${document.querySelector("#textb").value})`;
-                document.querySelector("#outer").style.border = `4px solid rgb(${document.querySelector("#borderr").value}, ${document.querySelector("#borderg").value}, ${document.querySelector("#borderb").value})`;
-            });
-        });
-    </script>
-
+    <link rel="stylesheet" href="style2.css">
+    <script src="script2.js"></script>
 </head>
 <body>
     <div id="outer">
@@ -35,13 +17,14 @@
         </p>
     </div><br><br>
     <div>Text</div>
-    Red<input type="text" id="textr"><br>
-    Green<input type="text" id="textg"><br>
-    Blue<input type="text" id="textb"><br><br>
+    Red: <input type="text" id="textr"><br>
+    Green: <input type="text" id="textg"><br>
+    Blue: <input type="text" id="textb"><br><br>
     <div>Border</div>
-    Red<input type="text" id="borderr"><br>
-    Green<input type="text" id="borderg"><br>
-    Blue<input type="text" id="borderb"><br>
+    Red: <input type="text" id="borderr"><br>
+    Green: <input type="text" id="borderg"><br>
+    Blue: <input type="text" id="borderb"><br>
+    Width (px): <input type="text" id="borderwidth"><br>
     <br><br>
     <input type="button" value="Apply Changes" id="btn">
 </body>

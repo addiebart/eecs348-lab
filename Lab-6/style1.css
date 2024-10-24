@@ -1,0 +1,11 @@
+:root {
+    font-family: "Comic Sans MS", serif;
+    text-align: center;
+    background-color: darkseagreen;
+}
+
+img {
+    height: 300px;
+    max-height: 80%;
+    width: auto;
+}
