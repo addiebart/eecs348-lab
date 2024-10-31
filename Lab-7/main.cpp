@@ -113,21 +113,32 @@ Matrix add_matrices(const Matrix& matrix_1, const Matrix& matrix_2) {
     return newMatrix;
 }
 
-/*
 Matrix multiply_matrices(const Matrix& matrix_1, const Matrix& matrix_2) {
-    // TODO: Implement matrix multiplication
+    int size = matrix_1.matrix_size;
+    Matrix newMatrix = Matrix(size);
+    for (int row = 0; row < size; row++) { //for each row
+        for (int col = 0; col < size; col++) { //for each column
+            double resultForTile = 0;
+            for (int item = 0; item < size; item++) { // add products into tile in out
+                resultForTile += matrix_1.matrix_data[row][item] * matrix_2.matrix_data[item][col]; // add this product to the tile result
+            }
+            newMatrix.matrix_data[row][col] = resultForTile; // set the out tile to the tile result
+        }
+    }
+    return newMatrix;
 }
-*/
 
 // Overloaded + operator for matrix addition
 Matrix operator+(const Matrix& matrix_1, const Matrix& matrix_2) {
     return add_matrices(matrix_1, matrix_2);
 }
 
-/*
 // Overloaded * operator for matrix multiplication
-Matrix operator*(const Matrix& matrix_1, const Matrix& matrix_2);
+Matrix operator*(const Matrix& matrix_1, const Matrix& matrix_2) {
+    return multiply_matrices(matrix_1, matrix_2);
+}
 
+/*
 void get_diagonal_sum(const Matrix& matrix) {
     // TODO: Calculate and print the sum of the diagonal elements
 }
@@ -151,13 +162,14 @@ int main(int argc, char* argv[]) {
     print_matrix(add_result_1);
     Matrix add_result_2 = matrix_1 + matrix_2;
     print_matrix(add_result_2);
-    /*
+
     cout << "multiply_matrices result:" << endl;
     Matrix multiply_result_1 = multiply_matrices(matrix_1, matrix_2);
-    Matrix multiply_result_2 = matrix_1 * matrix_2;
     print_matrix(multiply_result_1);
+    Matrix multiply_result_2 = matrix_1 * matrix_2;
     print_matrix(multiply_result_2);
 
+    /*
     cout << "get matrix diagonal sum" << endl;
     get_diagonal_sum(matrix_1);
 
