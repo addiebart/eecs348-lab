@@ -4,4 +4,5 @@ This repository contains code submissions for the lab section of EECS 348: Softw
 <br>
 Lab 4 - Incomplete\
 Lab 5 - C Programming\
-Lab 6 - Web Development @ https://people.eecs.ku.edu/~e983b266/eecs348lab7.html
+Lab 6 - Web Development @ https://people.eecs.ku.edu/~e983b266/eecs348lab7.html \
+Lab 7 - C++ and Object-Oriented Programming
