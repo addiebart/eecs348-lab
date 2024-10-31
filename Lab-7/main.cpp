@@ -102,18 +102,29 @@ void print_matrix(const Matrix& matrix_1, const Matrix& matrix_2) {
 	print_matrix(matrix_2);
 }
 
-/*
 Matrix add_matrices(const Matrix& matrix_1, const Matrix& matrix_2) {
-    // TODO: Implement matrix addition
+    int size = matrix_1.matrix_size;
+    Matrix newMatrix = Matrix(size);
+    for (int row = 0; row < size; ++row) {
+        for (int col = 0; col < size; ++col) {
+            newMatrix.matrix_data[row][col] = matrix_1.matrix_data[row][col] + matrix_2.matrix_data[row][col];
+        }
+    }
+    return newMatrix;
 }
 
+/*
 Matrix multiply_matrices(const Matrix& matrix_1, const Matrix& matrix_2) {
     // TODO: Implement matrix multiplication
 }
+*/
 
 // Overloaded + operator for matrix addition
-Matrix operator+(const Matrix& matrix_1, const Matrix& matrix_2);
+Matrix operator+(const Matrix& matrix_1, const Matrix& matrix_2) {
+    return add_matrices(matrix_1, matrix_2);
+}
 
+/*
 // Overloaded * operator for matrix multiplication
 Matrix operator*(const Matrix& matrix_1, const Matrix& matrix_2);
 
@@ -135,13 +146,12 @@ int main(int argc, char* argv[]) {
     print_matrix(matrix_1, matrix_2);
 
 
-	/*
     cout << "add_matrices result:" << endl;
     Matrix add_result_1 = add_matrices(matrix_1, matrix_2);
-    Matrix add_result_2 = matrix_1 + matrix_2;
     print_matrix(add_result_1);
+    Matrix add_result_2 = matrix_1 + matrix_2;
     print_matrix(add_result_2);
-
+    /*
     cout << "multiply_matrices result:" << endl;
     Matrix multiply_result_1 = multiply_matrices(matrix_1, matrix_2);
     Matrix multiply_result_2 = matrix_1 * matrix_2;
