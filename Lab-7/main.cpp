@@ -55,7 +55,7 @@ void read_matrix_from_file(const string& file_name, Matrix& matrix_1, Matrix& ma
 	ifstream inputFile(file_name);
 
 	int matrixSize;
-	try {
+	try { // check that value is an int
         inputFile >> matrixSize;
 	} catch (exception e) {
 		cout << endl << "Invalid input, quitting";
@@ -63,15 +63,12 @@ void read_matrix_from_file(const string& file_name, Matrix& matrix_1, Matrix& ma
 	}
 	matrix_1 = Matrix(matrixSize); // make matricies
 	matrix_2 = Matrix(matrixSize);
-
-	// TODO: Read matrix data from cin into matrix_1 and matrix_2
-	//       Make sure to handle potential errors and invalid input
 	
 	//read file
 	for (int row = 0; row < matrixSize * 2; ++row) {
 		for (int col = 0; col < matrixSize; ++col) {
 			double cellData;
-			try {
+			try { // ensure value is a double
 				inputFile >> cellData;
 			} catch (exception e) {
 				cout << endl << "Invalid input, quitting";
@@ -86,26 +83,25 @@ void read_matrix_from_file(const string& file_name, Matrix& matrix_1, Matrix& ma
 	}
 }
 
-void print_matrix(const Matrix& matrix) {
-    // TODO: Print the matrix to the console
+void print_matrix(const Matrix& matrix) { // print one matrix
 	for (int row = 0; row < matrix.matrix_size; row++) {
 		for (int col = 0; col < matrix.matrix_size; col++) {
-			cout << matrix.matrix_data[row][col] << "\t";
+			cout << matrix.matrix_data[row][col] << "\t"; // print every entry followed by a tab
 		}
-    cout << endl;
+    cout << endl; // print a newline after each row
   }
-  cout << endl;
+  cout << endl; // print a newline after the matrix
 }
 
-void print_matrix(const Matrix& matrix_1, const Matrix& matrix_2) {
+void print_matrix(const Matrix& matrix_1, const Matrix& matrix_2) { //print two matricies
     print_matrix(matrix_1);
 	print_matrix(matrix_2);
 }
 
-Matrix add_matrices(const Matrix& matrix_1, const Matrix& matrix_2) {
+Matrix add_matrices(const Matrix& matrix_1, const Matrix& matrix_2) { //add two matricies
     int size = matrix_1.matrix_size;
     Matrix newMatrix = Matrix(size);
-    for (int row = 0; row < size; ++row) {
+    for (int row = 0; row < size; ++row) { //new[i,j] = old1[i,j] + old2[i,j]
         for (int col = 0; col < size; ++col) {
             newMatrix.matrix_data[row][col] = matrix_1.matrix_data[row][col] + matrix_2.matrix_data[row][col];
         }
@@ -113,7 +109,7 @@ Matrix add_matrices(const Matrix& matrix_1, const Matrix& matrix_2) {
     return newMatrix;
 }
 
-Matrix multiply_matrices(const Matrix& matrix_1, const Matrix& matrix_2) {
+Matrix multiply_matrices(const Matrix& matrix_1, const Matrix& matrix_2) { // multiply two matricies
     int size = matrix_1.matrix_size;
     Matrix newMatrix = Matrix(size);
     for (int row = 0; row < size; row++) { //for each row
@@ -138,28 +134,28 @@ Matrix operator*(const Matrix& matrix_1, const Matrix& matrix_2) {
     return multiply_matrices(matrix_1, matrix_2);
 }
 
-void get_diagonal_sum(const Matrix& matrix) {
-    int size = matrix.matrix_size;
+void get_diagonal_sum(const Matrix& matrix) { // add on diagionals and print sums
+    int size = matrix.matrix_size; // define variables
     double sum1 = 0;
     double sum2 = 0;
     for (int i = 0; i < size; i++) {
         sum1 += matrix.matrix_data[i][i];
-        sum2 += matrix.matrix_data[(size - 1) - i][i];
+        sum2 += matrix.matrix_data[(size - 1) - i][i]; // rows for sum2 mirror row1 while cols are the same
     }
-    cout << "top-left -> bottom-right sum: " << sum1 << endl;
+    cout << "top-left -> bottom-right sum: " << sum1 << endl; //print
     cout << "bottom-left -> top-right sum: " << sum2 << endl;
 }
 
 void swap_matrix_row(Matrix& matrix, int row1, int row2) {
     int size = matrix.matrix_size;
-    if (row1 >= size || row2 >= size) {
+    if (row1 >= size || row2 >= size) { //check for valid row indicies
         cout << endl << "One of the provided indicies is out of range, quitting";
         exit(1);
     }
-    double *data1 = matrix.matrix_data[row1];
+    double *data1 = matrix.matrix_data[row1]; // arrays are pointers, shuffle them around.
     matrix.matrix_data[row1] = matrix.matrix_data[row2];
     matrix.matrix_data[row2] = data1;
-    print_matrix(matrix);
+    print_matrix(matrix); //print
 }
 
 int main(int argc, char* argv[]) {
