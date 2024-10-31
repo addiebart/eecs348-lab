@@ -1,5 +1,7 @@
 
 #include <iostream>
+#include <string>
+#include <fstream>
 
 using namespace std;
 
@@ -26,16 +28,61 @@ public:
 void read_matrix_from_file(const string& file_name, Matrix& matrix_1, Matrix& matrix_2) {
     // TODO: Read matrix data from the file
     //    Make sure to handle potential errors and invalid input
+
+	ifstream inputFile(file_name);
+
+	int matrixSize;
+	string extractionBuffer;
+	inputFile >> extractionBuffer;
+	try {
+		matrixSize = stoi(extractionBuffer);
+	} catch (exception e) {
+		cout << endl << "Invalid input, quitting";
+		exit(1);
+	}
+	matrix_1 = Matrix(matrixSize); // make matricies
+	matrix_2 = Matrix(matrixSize);
+
+	// TODO: Read matrix data from cin into matrix_1 and matrix_2
+	//       Make sure to handle potential errors and invalid input
+	
+	//read file
+	for (int row = 0; row < matrixSize * 2; row++) {
+		for (int col = 0; col < matrixSize; col++) {
+			inputFile >> extractionBuffer;
+			double cellData;
+			try {
+				cellData = stod(extractionBuffer);
+			} catch (exception e) {
+				cout << endl << "Invalid input, quitting";
+				exit(1);
+			}
+			if (row < matrixSize) { //matrix 1
+				matrix_1.matrix_data[row][col] = cellData;
+			} else { //matrix 2
+				matrix_2.matrix_data[row % matrixSize][col] = cellData;
+			}
+		}
+	}
 }
 
 void print_matrix(const Matrix& matrix) {
     // TODO: Print the matrix to the console
+	for (int row = 0; row < matrix.matrix_size; row++) {
+		for (int col = 0; col < matrix.matrix_size; col++) {
+			cout << matrix.matrix_data[row][col] << "\t";
+		}
+    cout << endl;
+  }
+  cout << endl;
 }
 
 void print_matrix(const Matrix& matrix_1, const Matrix& matrix_2) {
-    // TODO: Print both matrices to the console
+    print_matrix(matrix_1);
+	print_matrix(matrix_2);
 }
 
+/*
 Matrix add_matrices(const Matrix& matrix_1, const Matrix& matrix_2) {
     // TODO: Implement matrix addition
 }
@@ -58,6 +105,7 @@ void swap_matrix_row(Matrix& matrix, int row1, int row2) {
     // TODO: Swap the rows 'row1' and 'row2' in the matrix
     //    Handle invalid row indices
 }
+*/
 
 int main(int argc, char* argv[]) {
     Matrix matrix_1, matrix_2;
@@ -66,6 +114,8 @@ int main(int argc, char* argv[]) {
     cout << "print_matrix" << endl;
     print_matrix(matrix_1, matrix_2);
 
+
+	/*
     cout << "add_matrices result:" << endl;
     Matrix add_result_1 = add_matrices(matrix_1, matrix_2);
     Matrix add_result_2 = matrix_1 + matrix_2;
@@ -83,6 +133,7 @@ int main(int argc, char* argv[]) {
 
     cout << "swap matrix rows" << endl;
     swap_matrix_row(matrix_1, 0, 1);
+	*/
 
     return 0;
 }
