@@ -150,12 +150,17 @@ void get_diagonal_sum(const Matrix& matrix) {
     cout << "bottom-left -> top-right sum: " << sum2 << endl;
 }
 
-/*
 void swap_matrix_row(Matrix& matrix, int row1, int row2) {
-    // TODO: Swap the rows 'row1' and 'row2' in the matrix
-    //    Handle invalid row indices
+    int size = matrix.matrix_size;
+    if (row1 >= size || row2 >= size) {
+        cout << endl << "One of the provided indicies is out of range, quitting";
+        exit(1);
+    }
+    double *data1 = matrix.matrix_data[row1];
+    matrix.matrix_data[row1] = matrix.matrix_data[row2];
+    matrix.matrix_data[row2] = data1;
+    print_matrix(matrix);
 }
-*/
 
 int main(int argc, char* argv[]) {
     Matrix matrix_1, matrix_2;
@@ -163,7 +168,6 @@ int main(int argc, char* argv[]) {
 
     cout << "print_matrix" << endl;
     print_matrix(matrix_1, matrix_2);
-
 
     cout << "add_matrices result:" << endl;
     Matrix add_result_1 = add_matrices(matrix_1, matrix_2);
@@ -179,11 +183,10 @@ int main(int argc, char* argv[]) {
 
     cout << "get matrix diagonal sum" << endl;
     get_diagonal_sum(matrix_1);
+    cout << endl;
 
-    /*
     cout << "swap matrix rows" << endl;
     swap_matrix_row(matrix_1, 0, 1);
-	*/
 
     return 0;
 }
