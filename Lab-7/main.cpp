@@ -138,11 +138,19 @@ Matrix operator*(const Matrix& matrix_1, const Matrix& matrix_2) {
     return multiply_matrices(matrix_1, matrix_2);
 }
 
-/*
 void get_diagonal_sum(const Matrix& matrix) {
-    // TODO: Calculate and print the sum of the diagonal elements
+    int size = matrix.matrix_size;
+    double sum1 = 0;
+    double sum2 = 0;
+    for (int i = 0; i < size; i++) {
+        sum1 += matrix.matrix_data[i][i];
+        sum2 += matrix.matrix_data[(size - 1) - i][i];
+    }
+    cout << "top-left -> bottom-right sum: " << sum1 << endl;
+    cout << "bottom-left -> top-right sum: " << sum2 << endl;
 }
 
+/*
 void swap_matrix_row(Matrix& matrix, int row1, int row2) {
     // TODO: Swap the rows 'row1' and 'row2' in the matrix
     //    Handle invalid row indices
@@ -169,10 +177,10 @@ int main(int argc, char* argv[]) {
     Matrix multiply_result_2 = matrix_1 * matrix_2;
     print_matrix(multiply_result_2);
 
-    /*
     cout << "get matrix diagonal sum" << endl;
     get_diagonal_sum(matrix_1);
 
+    /*
     cout << "swap matrix rows" << endl;
     swap_matrix_row(matrix_1, 0, 1);
 	*/
