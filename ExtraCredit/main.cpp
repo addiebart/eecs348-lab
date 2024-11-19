@@ -52,7 +52,7 @@ double extractNumeric(const string& str) {
             int exponent = i - radixIndex;
             int charint = charToInt(str[i]);
             if (charint < 0) {
-                return -999999.9;
+                return -999999.99;
             }
             fractionalpart += (charint * (pow(0.1, exponent)));
         }
